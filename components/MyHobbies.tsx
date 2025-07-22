@@ -14,13 +14,13 @@ export const MyHobbies = () => {
 
     return (
 
-    <>
-    <h2>asdasdasdasdasdasd My hobbies</h2>
+    <div>
+    <h2>My hobbies: </h2>
     <ul className="list-disc pl-10">
             <li className="font-bold">{hobbyPreferred}</li>
             {allHobbies.map((allHobby, i) => <li key={`allHobby-${i}`}>{allHobby}</li>)}
     </ul>
-    </>
+    </div>
     
     )
 };

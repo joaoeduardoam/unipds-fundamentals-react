@@ -1,17 +1,14 @@
-// export default function Page() {
-//   return <div>Page</div>
-// }
+import Link from "next/link";
 
-import { MyHobbies } from "../../../components/MyHobbies";
-import { MyImage } from "../../../components/MyImage";
-import { MyName } from "../../../components/MyName";
-const Page = () => <div>
-  <MyName name="João" age={39} birthDate = {new Date(1987,6,27)}/>
-  <MyHobbies/>
+const Page =  () => (
 
-  Gosto de:
-  <MyImage/>
-</div>;
+
+    <div>
+      <Link className="underline" href="/nivel-0/Joao">Pagina do Joao</Link>
+    </div>
+  )
+
+
 
 
 export default Page;
