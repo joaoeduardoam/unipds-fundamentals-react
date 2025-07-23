@@ -17,7 +17,7 @@ export const MyGlobalCount = () => {
             <Button 
             onClick={() => {
                 console.log("click");
-                setCount((c) => c + 1);
+                setCount((c) => (c ?? 0) + 1);
             }}
             >            
             +1
@@ -25,7 +25,7 @@ export const MyGlobalCount = () => {
         <Button 
             onClick={() => {
                 console.log("click");
-                setCount((c) => c - 1);
+                setCount((c) => (c ?? 0) - 1);
             }}
             >            
             -1

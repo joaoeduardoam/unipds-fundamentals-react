@@ -27,7 +27,7 @@ export default function ContadorProvider({children,}:{children: React.ReactNode}
   }, []);
 
   useEffect(() => {
-    if (count) {
+    if (count !== null) {
       localStorage.setItem('count', count.toString());
     }
     
