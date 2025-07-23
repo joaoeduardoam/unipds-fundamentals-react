@@ -3,9 +3,9 @@
 // }
 
 import Link from "next/link";
-import { MyHobbies } from "../../../../components/MyHobbies";
-import { MyImage } from "../../../../components/MyImage";
-import { MyName } from "../../../../components/MyName";
+import { MyHobbies } from "../../../components/MyHobbies";
+import { MyImage } from "../../../components/MyImage";
+import { MyName } from "../../../components/MyName";
 
 type PageProps = {
   params: Promise<{
