@@ -1,4 +1,4 @@
-import ContadorProvider from "@/context/CountContext";
+import ContadorProvider from "@/context/nivel-2/CountContext";
 
 export default function Layout({
   children,

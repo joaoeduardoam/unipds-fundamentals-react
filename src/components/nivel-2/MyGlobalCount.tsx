@@ -2,7 +2,7 @@
 
 import { use, useContext, useEffect, useState } from "react";
 import { Button } from "./Button";
-import { ContadorContext } from "@/context/CountContext";
+import { ContadorContext } from "@/context/nivel-2/CountContext";
 
 export const MyGlobalCount = () => {
 
