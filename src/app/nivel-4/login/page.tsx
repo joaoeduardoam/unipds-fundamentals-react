@@ -8,15 +8,29 @@ import { Button } from '@/components/nivel-2/Button'
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   const { login } = useAuth()
   const router = useRouter()
+  
+
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('EEEmail:', email)
+    console.log('PPPassword:', password)
     e.preventDefault()
+
+    setError('')
+
+    if (!email || !password) {
+      setError('Fill in all the fields')
+      return
+    }
+
     try {
       await login(email, password)
       router.push('/nivel-4/dashboard')
     } catch (err) {
+      setError((err as Error).message)
       console.error(err)
     }
   }
@@ -26,6 +40,9 @@ export default function LoginPage() {
       <h1 className="text-3xl font-bold">
         Login
       </h1>
+
+      {error && <h2 className='bg-red-900 text-white rounded p-2 border'>{error}</h2>}
+
       <form onSubmit={handleSubmit} className="grid gap-y-2 w-96">
         <input 
             className='p-2 border border-gray-900 rounded'
@@ -42,7 +59,7 @@ export default function LoginPage() {
             type="password"
         />
 
-        <Button type="submit">Entrar</Button>
+        <Button type="submit">Login</Button>
     </form>
     </div>
     

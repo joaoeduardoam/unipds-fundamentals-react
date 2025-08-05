@@ -2,7 +2,11 @@
 
 import { createContext, useState, useContext, useEffect } from 'react'
 
-type User = {
+import Cookies from 'js-cookie'
+import { decodeJwt } from 'jose'
+import { useRouter } from 'next/navigation'
+
+export type User = {
   email: string
   role: 'user' | 'admin'
 }
@@ -20,41 +24,49 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
 
+  const router = useRouter();
+
   useEffect(() => {
-    const savedToken = localStorage.getItem('token')
-    const savedUser = localStorage.getItem('user')
-    if (savedToken && savedUser) {
-      setToken(savedToken)
-      setUser(JSON.parse(savedUser))
+
+    const savedToken = Cookies.get('token');
+
+    if (savedToken) {
+
+      const { email, role } = decodeJwt(savedToken) as unknown as User
+      
+      setUser({ email, role })
+
+      setToken(savedToken);
     }
   }, [])
 
   const login = async (email: string, password: string) => {
+
     const res = await fetch('/nivel-4/api/auth', {
       method: 'POST',
+      body: JSON.stringify({ email, password }),
       headers: {
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+      }
     })
 
-    const data = await res.json()
+  const data = await res.json()
 
-    if (res.ok) {
-      setToken(data.token)
+  if (res.ok) {
       setUser(data.user)
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('user', JSON.stringify(data.user))
     } else {
       throw new Error(data.message)
-    }
+  }
+
+
+
   }
 
   const logout = () => {
-    setToken(null)
-    setUser(null)
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    setToken(null);
+    setUser(null);
+    Cookies.remove('token');
+    router.push('/nivel-4/login');
   }
 
   return (

@@ -1,5 +1,8 @@
-import { ValueGlobalCount } from "@/components/ValueGlobalCount";
-import { MyGlobalCount } from "../../components/MyGlobalCount";
+// import { ValueGlobalCount } from "@/components/ValueGlobalCount";
+// import { MyGlobalCount } from "../../components/MyGlobalCount";
+
+import { MyGlobalCount } from "@/components/nivel-2/MyGlobalCount";
+import { ValueGlobalCount } from "@/components/nivel-2/ValueGlobalCount";
 
 
 
